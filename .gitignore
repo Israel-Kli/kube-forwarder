@@ -7,7 +7,6 @@ npm-debug.log
 npm-debug.log.*
 thumbs.db
 !.gitkeep
-sentry.properties
 .env
 .env.production
 __diff_output__

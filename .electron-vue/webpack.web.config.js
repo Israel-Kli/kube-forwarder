@@ -101,7 +101,7 @@ let webConfig = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.NormalModuleReplacementPlugin(
-      /^(fs)|(net)|(@kubernetes\/client-node)|(promise-fs)|(@sentry\/electron)|(vuex-electron)|(child_process)$/,
+      /^(fs)|(net)|(@kubernetes\/client-node)|(promise-fs)|(vuex-electron)|(child_process)$/,
       path.resolve(__dirname, 'web-stubs/default.js')
     ),
     new webpack.NormalModuleReplacementPlugin(
@@ -109,7 +109,6 @@ let webConfig = {
       path.resolve(__dirname, 'web-stubs/default.js')
     ),
     new webpack.NormalModuleReplacementPlugin(/^electron$/, path.resolve(__dirname, 'web-stubs/electron.js')),
-    new webpack.NormalModuleReplacementPlugin(/configure-sentry/, path.resolve(__dirname, 'web-stubs/configure-sentry.js'))
   ],
   output: {
     filename: '[name].js',

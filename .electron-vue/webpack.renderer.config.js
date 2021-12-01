@@ -10,7 +10,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 
 const { dependencies } = require('../package.json')
-const sentryWebpackPlugin = require('./plugins/sentry-webpack')
 
 /**
  * List of node_modules to include in webpack bundle
@@ -169,13 +168,11 @@ if (process.env.NODE_ENV === 'production') {
     ]),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"',
-      'process.env.SENTRY_DSN': `"${process.env.SENTRY_DSN}"`,
-      'process.env.GA_TRACKING_ID': `"${process.env.GA_TRACKING_ID}"`
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     }),
-    process.env.RELEASE === 'true' ? sentryWebpackPlugin : null
+    process.env.RELEASE === null
   ].filter(Boolean)
 }
 

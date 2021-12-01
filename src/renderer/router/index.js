@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import * as Sentry from '@sentry/electron'
 
 import store from '../store'
 
@@ -65,7 +64,6 @@ const router = new Router({
 })
 
 router.afterEach((to, from) => {
-  Sentry.addBreadcrumb({ category: 'navigation', data: { from: from.path, to: to.path } })
 
   // todo Move it in the right place.
   if (from.name === 'Cluster Add') {

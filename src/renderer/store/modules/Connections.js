@@ -2,7 +2,6 @@ import Vue from 'vue'
 import * as k8s from '@kubernetes/client-node'
 import * as net from 'net'
 import killable from 'killable'
-import * as Sentry from '@sentry/electron'
 
 import { patchForward } from '../../lib/k8s-port-forwarding-patch'
 import * as resourceKinds from '../../lib/constants/workload-types'
@@ -347,10 +346,7 @@ let actions = {
 
       return { success, results }
     } catch (error) {
-      // TODO a breadcrumb for originError
-      Sentry.captureException(error)
-      clearStates(commit, service)
-      return { success: false, error }
+      throw buildSentryIgnoredError(error)
     }
   },
 

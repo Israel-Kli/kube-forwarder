@@ -1,9 +1,5 @@
 'use strict'
 
-// require Sentry as soon as possible
-import configureSentry from '../common/configure-sentry'
-configureSentry()
-
 /* eslint-disable import/first */
 import { app, BrowserWindow, Menu } from 'electron'
 import os from 'os'

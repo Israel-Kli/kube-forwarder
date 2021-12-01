@@ -6,7 +6,6 @@ const path = require('path')
 const webpack = require('webpack')
 
 const packageJson = require('../package.json')
-const sentryWebpackPlugin = require('./plugins/sentry-webpack')
 
 let mainConfig = {
   entry: {
@@ -67,9 +66,8 @@ if (process.env.NODE_ENV === 'production') {
     ...mainConfig.plugins,
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"',
-      'process.env.SENTRY_DSN': `"${process.env.SENTRY_DSN}"`
     }),
-    process.env.RELEASE === 'true' ? sentryWebpackPlugin : null
+    process.env.RELEASE === null
   ].filter(Boolean)
 }
 

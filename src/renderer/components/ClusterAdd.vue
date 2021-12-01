@@ -67,7 +67,6 @@ import { remote } from 'electron'
 import * as path from 'path'
 import { KubeConfig } from '@kubernetes/client-node'
 import { mapActions } from 'vuex'
-import * as Sentry from '@sentry/electron'
 
 import Header from './shared/Header'
 import Button from './shared/Button'
@@ -199,8 +198,6 @@ export default {
     },
     async confirmInvalidConnection(errors) {
       const messages = errors.map(({ error, contextName }) => {
-        // TODO a breadcrumb for originError
-        Sentry.captureException(error)
         return this.getConnectionErrorMessage(error, contextName)
       })
 
